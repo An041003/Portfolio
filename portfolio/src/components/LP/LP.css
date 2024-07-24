@@ -66,3 +66,28 @@
   height: 450px;
   border-radius: 50%;
 }
+
+.horizontal{
+  position: absolute;
+  bottom: 27%;
+  left: 5%;
+}
+
+.horizontal p {
+  font-size: 1.6rem;
+  width: 1.6rem;
+  height: auto;
+  align-items: center;
+  text-align: center;
+  color: white;
+  text-decoration: none !important;
+  margin-left: 3.5px;
+}
+
+.seemore{
+  padding: 20px 0;
+  color: aliceblue;
+  font-size: 2rem !important;
+  align-items: center;
+  /* background-color: aqua; */
+}

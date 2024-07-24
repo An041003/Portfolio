@@ -1,0 +1,10 @@
+.sider{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+    height: 300px;
+    justify-content: space-between;
+    top: 240px;
+    left: 50px;
+}

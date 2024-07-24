@@ -1,8 +1,9 @@
 import React from 'react';
 import './me.css';
 import { Link } from 'react-router-dom';
-import Header from '../Header/header';
+import Header from '../Navigation/header';
 import Me from '../../img/1109233.jpg';
+import Sider from '../Navigation/sider';
 
 function AboutMe() {
 return (
@@ -10,6 +11,7 @@ return (
       <header>
         <Header />
       </header>
+      <Sider />
       <main>
         <div className="title">
           <div className="title-text">
@@ -20,7 +22,7 @@ return (
             <button className="showme">Show me more</button>
           </div>
           <div className="bgimg">
-            {/* <img src={Me} className="Me" /> */}
+            <img src={Me} className="bgimg-child" />
             <div className="number">02</div>
           </div>
 

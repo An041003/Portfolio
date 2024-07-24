@@ -30,7 +30,7 @@ nav ul li {
   margin: 0 1.5rem;
 }
 
-nav ul li .icon {
+nav .icon {
   color: white;
   text-decoration: none;
   font-size: 1.8rem;

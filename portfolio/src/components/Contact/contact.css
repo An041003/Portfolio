@@ -11,9 +11,9 @@
 
 .title-text {
     position: absolute;
-    top: 30%;
+    top: 200px;
     bottom: 0;
-    right: 55%;
+    left: 200px;
   text-align: left;
   margin-bottom: 30px;
 }
@@ -39,13 +39,13 @@
 }
 
 
-.Come{
+.bgimg-child{
     position: absolute;
-    top: 10%;
-    bottom: 0;
-    left: 25%;
+    top: 20%;
+    right: 5%;
     z-index: -1000;
-    scale: 0.7;
+    width: 800px;
+    height: 500px;
 }
 
 .number{

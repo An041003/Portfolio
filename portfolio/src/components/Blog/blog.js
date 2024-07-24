@@ -1,14 +1,17 @@
 import React from 'react';
 import './blog.css';
 import { Link } from 'react-router-dom';
-import Header from '../Header/header';
+import Header from '../Navigation/header';
+import Sider from '../Navigation/sider';
+import Blog from '../../img/blog.jpg';
 
 function Contact() {
 return (
     <div className='container'>
       <header>
         <Header />
-      </header>
+      </header>  
+      <Sider/>
       <main>
         <div className="title">
           <div className="title-text">
@@ -19,7 +22,7 @@ return (
             <button className="showme">Show me more</button>
           </div>
           <div className="bgimg">
-            {/* <img src={Me} className="Me" /> */}
+            <img src={Blog} className="bgimg-child" />
             <div className="number">01</div>
           </div>
 
