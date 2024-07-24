@@ -1,0 +1,51 @@
+
+
+header {
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo div {
+  font-weight: 100 !important;  
+  font-size: 1.6rem;
+  margin-left: 4rem;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin: 0 1.5rem;
+}
+
+nav ul li .icon {
+  color: white;
+  text-decoration: none;
+  font-size: 1.8rem;
+}
+
+nav ul li button {
+    border: none !important;
+    background-color: #1c2532;
+    color: white !important;
+    font-size: 1.6rem;
+    margin-top: 0.1rem;
+    margin-right: 2rem;
+}
+
+header :hover {
+    color: rgb(138, 138, 138) !important;
+    cursor: pointer;
+}
