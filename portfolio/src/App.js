@@ -4,6 +4,7 @@ import LP from './components/LP/LP';
 import Me from './components/Me/me';
 import Contact from './components/Contact/contact';
 import Blog from './components/Blog/blog';
+import Introduction from './components/Introduction/Introduction';
 
 function App() {
 
@@ -15,6 +16,8 @@ function App() {
         <Route path='/blog' element={<Blog />} />
         <Route path='/about' element={<Me />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/introduction' element={<Introduction />} />
+
       </Routes>
     </div>
   );

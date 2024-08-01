@@ -1,0 +1,82 @@
+.back{
+    background-color: transparent !important;
+    border: none !important;
+    margin-left: 3.5rem;
+    margin-top: 5rem;
+    position: fixed !important;
+    transition: transform 0.2s ease-in-out;
+}
+
+.back:hover{
+    cursor: pointer !important;
+    transform: translateX(-5px);
+}
+
+.back a{
+    font-size: 2rem;
+    font-weight: 50;
+    color: aliceblue !important;
+    text-decoration: none !important;
+}
+
+
+.preamble {
+    display: flex;
+    justify-content: space-between;
+    overflow: auto !important;
+}
+
+.scrolldown{
+    position:absolute !important;
+    left: 2%;
+    top: 60%;
+    font-size: 1.2rem;
+    font-weight: 100;
+    transform: rotate(90deg);
+    transform-origin: left bottom;
+}
+
+.scrolldown::after {
+  content: '———'; 
+  margin-left: 5px; 
+}
+
+.preamble-text{
+    margin-top: 15%;
+    margin-left: 10%;
+    font-size: 3rem;
+} 
+
+.preamble-text p {
+    width: auto !important;
+    margin-bottom: 0;
+}
+
+.preamble-text p:nth-of-type(2) { 
+   margin-left: 15rem;
+}
+
+.preamble-underline{
+  width: 66%;
+  height: 4px;
+  background-color: #e95757;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.preamble-text .preamble-underline:nth-of-type(2){
+    margin-left: 15rem;
+    width: 46%;
+}
+
+
+
+.preamble-img{
+    margin-top: 6rem;
+    height: 85vh;
+}
+
+.whoiam{
+    background-color: white;
+    width: 100%;
+}

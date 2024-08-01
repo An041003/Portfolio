@@ -1,0 +1,11 @@
+.showme a{
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: aliceblue !important;
+    text-decoration: none !important;
+    background-color: #e95757;
+    border-radius: 30px;
+    border: none !important;
+    transition: transform 0.2s ease-in-out;
+}

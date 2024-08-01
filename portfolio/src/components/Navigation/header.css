@@ -6,6 +6,13 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  background-color: transparent !important;
+  transition: color 0.3s ease;
+}
+
+header.light-bg { 
+  color: black; 
 }
 
 .logo {
@@ -38,7 +45,7 @@ nav .icon {
 
 nav ul li button {
     border: none !important;
-    background-color: #1c2532;
+    background-color: transparent;
     color: white !important;
     font-size: 1.6rem;
     margin-top: 0.1rem;

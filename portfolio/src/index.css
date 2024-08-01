@@ -4,6 +4,8 @@ body {
   box-sizing: border-box;
   font-family: 'futura_r', 'Helvetica Neue', 'Helvetica', 'Arial', 'Avenir', 'Hiragino Sans', 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
   font-size: 1.6rem;
+  /* width: 100%; */
+  overflow-x:hidden; ;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

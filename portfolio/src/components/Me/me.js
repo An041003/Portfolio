@@ -19,7 +19,7 @@ return (
             <div className="title-underline"></div>
             <p></p>
             <p></p>
-            <button className="showme">Show me more</button>
+            <button className="showme"><Link to = "/introduction">Show me more</Link></button>
           </div>
           <div className="bgimg">
             <img src={Me} className="bgimg-child" />
