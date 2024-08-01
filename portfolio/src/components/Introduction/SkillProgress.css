@@ -1,0 +1,59 @@
+.skill-progress {
+  margin-top: 15px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+
+.skill-text {
+  display: flex;
+  font-size: 1.2rem;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+
+.skill-text p{
+    margin: 0;
+}
+
+.skill-text p:nth-of-type(1){
+    font-weight: bold;
+    font-size: 1.6rem;
+    height: 30px;
+}
+
+.skill-text p:nth-of-type(2){
+    margin-right: 170px;
+    color: gray;
+    font-size: 1rem;
+    font-weight: 100;
+    margin-top: 7px;
+}
+
+.skill-text p:nth-of-type(3){
+    margin-left: 10px;
+    font-weight: 100;
+    margin-top: 7px;
+}
+
+
+
+.progress-bar {
+  width: 97%;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #24001ed4, #be1966b1);
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

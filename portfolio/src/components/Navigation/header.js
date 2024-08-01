@@ -49,12 +49,6 @@ export const Header = (props) => {
           </ul>
         </nav>
       </header>
-      <main>
-        {/* ... Nội dung trang ... */}
-      </main>
-      <footer>
-        {/* ... Nội dung footer ... */}
-      </footer>
     </>
   );
 };

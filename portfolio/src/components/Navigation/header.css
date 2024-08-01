@@ -9,10 +9,15 @@ header {
   position: fixed;
   background-color: transparent !important;
   transition: color 0.3s ease;
+  z-index: 1000;
 }
 
-header.light-bg { 
-  color: black; 
+.light-bg { 
+  color: #1c2532; 
+}
+
+.light-bg .icon{ 
+  color: #1c2532; 
 }
 
 .logo {
