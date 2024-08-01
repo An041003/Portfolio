@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.1cc96a4b.css",
-    "main.js": "/Portfolio/static/js/main.2f3e2ec4.js",
-    "static/js/453.1407b060.chunk.js": "/Portfolio/static/js/453.1407b060.chunk.js",
-    "static/media/1304839.jpg": "/Portfolio/static/media/1304839.5b6a5ffd8b85e83c113f.jpg",
-    "static/media/1109233.jpg": "/Portfolio/static/media/1109233.e11a998a1d261553f2f4.jpg",
-    "static/media/pool.jpg": "/Portfolio/static/media/pool.df80ebff20255df7a286.jpg",
-    "static/media/blog.jpg": "/Portfolio/static/media/blog.87a127d1229623ad23c7.jpg",
-    "static/media/comehere.jpg": "/Portfolio/static/media/comehere.cfecd15a4b247e05be57.jpg",
-    "static/media/me.jpg": "/Portfolio/static/media/me.2395c846f010bccee2fc.jpg",
-    "static/media/html.svg": "/Portfolio/static/media/html.c050f36973a221adbf2d5d0136aca1b4.svg",
-    "static/media/ps.svg": "/Portfolio/static/media/ps.0f223d8ca33fbdb0d124cc079a109a4f.svg",
-    "static/media/js.svg": "/Portfolio/static/media/js.1f4110a49e601b27558d644c8c16be17.svg",
-    "static/media/figma.svg": "/Portfolio/static/media/figma.879bf9751f2ade37ccab90a2d58b37d2.svg",
-    "index.html": "/Portfolio/index.html",
-    "main.1cc96a4b.css.map": "/Portfolio/static/css/main.1cc96a4b.css.map",
-    "main.2f3e2ec4.js.map": "/Portfolio/static/js/main.2f3e2ec4.js.map",
-    "453.1407b060.chunk.js.map": "/Portfolio/static/js/453.1407b060.chunk.js.map"
+    "main.css": "/portfolio/static/css/main.1cc96a4b.css",
+    "main.js": "/portfolio/static/js/main.e3258c14.js",
+    "static/js/453.1407b060.chunk.js": "/portfolio/static/js/453.1407b060.chunk.js",
+    "static/media/1304839.jpg": "/portfolio/static/media/1304839.5b6a5ffd8b85e83c113f.jpg",
+    "static/media/1109233.jpg": "/portfolio/static/media/1109233.e11a998a1d261553f2f4.jpg",
+    "static/media/pool.jpg": "/portfolio/static/media/pool.df80ebff20255df7a286.jpg",
+    "static/media/blog.jpg": "/portfolio/static/media/blog.87a127d1229623ad23c7.jpg",
+    "static/media/comehere.jpg": "/portfolio/static/media/comehere.cfecd15a4b247e05be57.jpg",
+    "static/media/me.jpg": "/portfolio/static/media/me.2395c846f010bccee2fc.jpg",
+    "static/media/html.svg": "/portfolio/static/media/html.c050f36973a221adbf2d5d0136aca1b4.svg",
+    "static/media/ps.svg": "/portfolio/static/media/ps.0f223d8ca33fbdb0d124cc079a109a4f.svg",
+    "static/media/js.svg": "/portfolio/static/media/js.1f4110a49e601b27558d644c8c16be17.svg",
+    "static/media/figma.svg": "/portfolio/static/media/figma.879bf9751f2ade37ccab90a2d58b37d2.svg",
+    "index.html": "/portfolio/index.html",
+    "main.1cc96a4b.css.map": "/portfolio/static/css/main.1cc96a4b.css.map",
+    "main.e3258c14.js.map": "/portfolio/static/js/main.e3258c14.js.map",
+    "453.1407b060.chunk.js.map": "/portfolio/static/js/453.1407b060.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1cc96a4b.css",
-    "static/js/main.2f3e2ec4.js"
+    "static/js/main.e3258c14.js"
   ]
 }
