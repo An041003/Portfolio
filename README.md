@@ -1,4 +1,4 @@
 # How to run Portfolio
-cd portfolio\\
-npm i\\
+cd portfolio  
+npm i  
 npm start
