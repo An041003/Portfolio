@@ -32,9 +32,6 @@ function LandingPage() {
           
         </div>
       </main>
-
-      <footer>
-      </footer>
     </div>
   );
 }

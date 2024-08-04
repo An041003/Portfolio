@@ -30,8 +30,6 @@ return (
         </div>
       </main>
 
-      <footer>
-      </footer>
     </div>
   );
 };
