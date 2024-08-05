@@ -16,7 +16,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/Portfolio' element={<LP />} />
+        <Route path='/' element={<LP />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/about' element={<Me />} />
         <Route path='/contact' element={<Contact />} />
