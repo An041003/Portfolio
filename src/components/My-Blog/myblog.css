@@ -68,6 +68,8 @@
     position: fixed;
     top: 50%;
     font-size: 1.2rem;
+    width: 15%;
+    overflow: hidden;
 }
 
 .recent{
@@ -89,6 +91,7 @@
     margin-bottom: 10px;
     font-size: 1.1rem;
     overflow: hidden;
+    text-wrap: nowrap;
     font-weight: 300;
 }
 
