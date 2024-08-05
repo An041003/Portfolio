@@ -1,0 +1,180 @@
+.blog-header{
+    background-color: #242526 !important;
+    padding-top: 18px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #282929;
+}
+
+
+.blog{
+    width: 100vw;
+    min-height: 90vh;
+    height: auto;
+    padding-top: 5%;
+    background-color: #18191A;
+    position:absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.blog-menu{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-menu ul{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding-bottom: 70px;
+    border-bottom: 1px solid #a2a2a2;
+}
+
+.blog-menu ul li{
+    padding: 15px 0;
+}
+
+.blog-menu ul li a{
+    text-decoration: none !important;
+    color: white !important;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: none !important;
+}
+
+.blog-menu ul li a:hover{
+    color: #CC3536 !important;
+}
+
+.blog-menu ul li .blog-icon{
+    margin-right: 10px;
+    padding: 0;
+    border: none !important;
+    font-size: 1.2rem;
+}
+
+/* .blog-menu ul :last-child{
+    padding-bottom: 70px;
+    border-bottom: 1px solid #a2a2a2;
+} */
+
+.blog-recent{
+    position: fixed;
+    top: 50%;
+    font-size: 1.2rem;
+}
+
+.recent{
+    margin: 20px;
+}
+
+.blog-recent h3{
+    margin: 20px 24px;
+}
+
+
+.blog-recent h4{
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.blog-recent .recent-title{
+    margin: 0 ;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    overflow: hidden;
+    font-weight: 300;
+}
+
+.blog-recent .recent-date{
+    font-size: 0.8rem;
+    color: #A7AAAE;
+    margin: 0 ;
+}
+
+.blog-container{
+    width: 53%;
+    height: auto !important;
+}
+
+.container-format{
+    background-color: #242526 !important;
+    margin: 20px 0;
+    height: auto;
+    padding: 20px 30px;
+    border-radius: 20px;
+}
+
+.blog-container h2{
+    font-size: 1.4rem;
+    margin: 10px 0;
+}
+
+.blog-container .container-date{
+    font-size: 1rem;
+    color: #A7AAAE;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.blog-container .container-content{
+    font-size: 1.2rem;
+    font-weight: lighter;
+    margin: 10px 0;
+}
+
+.blog-infor{
+    display: flex;
+    flex-direction: column;
+    width: 22%;
+}
+
+.blog-aboutme{
+    position: fixed;
+    margin-top: 50px;
+}
+
+.blog-img{
+    width: 250px;
+    height: auto !important;
+    border-radius: 50%;
+}
+
+.blog-aboutme p{
+    font-size: 1rem;
+    font-weight: 50;
+    color: #999999;
+    text-align: center;
+    width: 250px;
+}
+
+.blog-contact{
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 250px;
+    background-image: linear-gradient(to right, #8b1426e7, #ca29bd87);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 20px 0;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-contact span{
+    margin: 10px 0;
+}
+
+.fill{
+    background-color: #282929;
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+    border-radius: 10px;
+}

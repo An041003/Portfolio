@@ -6,6 +6,9 @@ import Contact from './components/Contact/contact';
 import Blog from './components/Blog/blog';
 import Introduction from './components/Introduction/Introduction';
 import MyBlog from './components/My-Blog/myblog';
+import Daily from './components/My-Blog/daily';
+import Technology from './components/My-Blog/technology';
+import Project from './components/My-Blog/project';
 import Ad from './components/Admin/admin';
 function App() {
 
@@ -19,6 +22,9 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/introduction' element={<Introduction />} />
         <Route path='/my-blog' element={<MyBlog />} />
+        <Route path='/my-blog-daily' element={<Daily/>} />
+        <Route path='/my-blog-technology' element={<Technology/>} />
+        <Route path='/my-blog-project' element={<Project/>} />
         <Route path='/ad' element={<Ad />} />
       </Routes>
     </div>

@@ -7,6 +7,8 @@ header {
   justify-content: space-between;
   align-items: center;
   position: fixed;
+  top: 0;
+  left: 0;
   background-color: transparent !important;
   transition: color 0.3s ease;
   z-index: 1000;
@@ -25,10 +27,12 @@ header {
   align-items: center;
 }
 
-.logo div {
+.logo a {
   font-weight: 100 !important;  
   font-size: 1.6rem;
   margin-left: 4rem;
+  text-decoration: none ;
+  color: aliceblue;
 }
 
 nav ul {
@@ -62,7 +66,7 @@ nav ul li button {
     cursor: pointer;
 }
 
-.logo:hover {
+.logo a:hover {
     color: rgb(138, 138, 138) !important;
     cursor: pointer;
 }

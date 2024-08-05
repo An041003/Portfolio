@@ -15,7 +15,7 @@ export const Header = (props) => {
     <>
       <header>
         <div className="logo">
-          <div>Binh An</div>
+          <div><Link to="/">Binh An</Link></div>
         </div>
         <nav>
           <ul className="nav-list">

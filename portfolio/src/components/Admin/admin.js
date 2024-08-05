@@ -1,24 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './admin.css'
+import Header from '../Navigation/header';
+
 
 function AdminPage() {
   const [blogs, setBlogs] = useState([]);
-  const [newBlog, setNewBlog] = useState({ title: '', content: '', type: '',});
-  const [editingBlog, setEditingBlog] = useState(null); 
-  const [isLoggedin, setIsLoggedIn] = useState(false); 
-  const [password, setPassword] = useState(''); 
+  const [newBlog, setNewBlog] = useState({ title: '', content: '', type: '' });
+  const [editingBlog, setEditingBlog] = useState(null);
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [password, setPassword] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedType, setSelectedType] = useState(null); 
 
   useEffect(() => {
     axios.get('https://66aefdacb05db47acc58c359.mockapi.io/api/articles')
-      .then(response => setBlogs(response.data))
+      .then(response => {
+        const sortedBlogs = response.data.sort((a, b) => b.createAt - a.createAt);
+        setBlogs(sortedBlogs);
+      })
       .catch(error => console.error(error));
   }, []);
 
-  const handleLogin = () => { //Login
-    const correctPassword = 'Binhan04'; 
+    useEffect(() => {
+    if (isLoggedin) { 
+      axios.get('https://66aefdacb05db47acc58c359.mockapi.io/api/articles')
+        .then(response => {
+          const sortedBlogs = response.data.sort((a, b) => b.createAt - a.createAt);
+          setBlogs(sortedBlogs);
+        })
+        .catch(error => console.error(error));
+    }
+  }, [isLoggedin]); 
+
+  const handleLogin = () => {
+    const correctPassword = 'Binhan04';
     if (password === correctPassword) {
       setIsLoggedIn(true);
-      setPassword(''); 
+      setPassword('');
     } else {
       alert('You are not my master!');
     }
@@ -28,52 +48,54 @@ function AdminPage() {
     setIsLoggedIn(false);
   };
 
-  const addBlog = () => { // Create a new blog
+  const addBlog = () => {
     axios.post('https://66aefdacb05db47acc58c359.mockapi.io/api/articles', newBlog)
-      .then(response =>{ 
+      .then(response => {
         console.log(response.data);
-        setBlogs([...blogs, response.data])})
+        setBlogs([...blogs, response.data])
+      })
       .catch(error => console.error(error));
-    setNewBlog({ title: '', content: '', type:'' }); // Reset input
+    setNewBlog({ title: '', content: '', type: '' });
   };
 
-  const updateBlog = (id, updatedBlog) => { //Update blog
+  const updateBlog = (id, updatedBlog) => {
     axios.put(`https://66aefdacb05db47acc58c359.mockapi.io/api/articles/${id}`, updatedBlog)
       .then(response => {
         const updatedBlogs = blogs.map(blog => blog.id === id ? response.data : blog);
         setBlogs(updatedBlogs);
-        setEditingBlog(null); // Reset editingBlog 
+        setEditingBlog(null);
+        setNewBlog({ title: '', content: '', type: '' });
       })
       .catch(error => console.error(error));
   };
 
-  const deleteBlog = (id) => { // Delete blog
+  const deleteBlog = (id) => {
     axios.delete(`https://66aefdacb05db47acc58c359.mockapi.io/api/articles/${id}`)
       .then(() => setBlogs(blogs.filter(blog => blog.id !== id)))
       .catch(error => console.error(error));
   };
 
   const handleEdit = (blog) => {
-    setEditingBlog(blog); 
-    setNewBlog({ title: blog.title, content: blog.content, type: blog.type }); 
+    setEditingBlog(blog);
+    setNewBlog({ title: blog.title, content: blog.content, type: blog.type });
   };
 
-const formatDate = (timestamp) => {
-  const date = new Date(timestamp * 1000); 
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric'
-  });
-};
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric'
+    });
+  };
 
-const deleteAllBlogs = async () => { //Delete all
+  const deleteAllBlogs = async () => {
     if (window.confirm("Are you sure you want to delete all posts?")) {
       try {
         await Promise.all(blogs.map(blog => axios.delete(`https://66aefdacb05db47acc58c359.mockapi.io/api/articles/${blog.id}`)));
-        setBlogs([]); 
+        setBlogs([]);
         alert("All posts have been deleted!");
       } catch (error) {
         console.error(error);
@@ -82,10 +104,39 @@ const deleteAllBlogs = async () => { //Delete all
     }
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
+  };
+
+  const handleTypeChange = (e) => {
+    setSelectedType(e.target.value);
+  };
+
+  const resetFilters = () => { 
+    setSearchTerm('');
+    setSelectedDate('');
+    setSelectedType('All Types');
+  };
+
+  const filteredBlogs = blogs.filter(blog => {
+    // search by title
+    const isTitleMatch = searchTerm.trim() === '' || blog.title.toLowerCase().includes(searchTerm.toLowerCase());
+    // search by time
+    const isDateMatch = selectedDate === '' || new Date(blog.createAt * 1000).getDate() === new Date(selectedDate).getDate();
+    // search by type
+    const isTypeMatch = selectedType === 'All Types' || blog.type === selectedType;
+    return isTitleMatch && isDateMatch && isTypeMatch;
+  });
+
   return (
-     <div>
-      {!isLoggedin ? ( 
-        <div>
+    <><Header />
+    <div>
+      {!isLoggedin ? (
+        <div className='login'>
           <h2>Enter Password</h2>
           <input
             type="password"
@@ -93,11 +144,13 @@ const deleteAllBlogs = async () => { //Delete all
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <button onClick={handleLogin}>Login</button>
+          <button onClick={handleLogin} >Login</button>
         </div>
       ) : (
-        <div>
+        <div className='admin'>
           <h1>Admin Page</h1>
+          <button onClick={handleLogout} className='logout'>Logout</button>
+          <h3>Add new article</h3>
           <div>
             <input
               type="text"
@@ -122,29 +175,48 @@ const deleteAllBlogs = async () => { //Delete all
             )}
             <button onClick={deleteAllBlogs}>Delete all</button>
             <ul>
-                <li>Note:</li>
-                <li>1.Dayly</li>
-                <li>2.Technology</li>
-                <li>3.Project</li>
-                <li>4.My job</li>
-                {/* <li></li> */}
-
+              Note types:
+              <li>1.Daily</li>
+              <li>2.Technology</li>
+              <li>3.Project</li>
             </ul>
+            <h3 className='search'>Search</h3>
+            <div>
+              <input
+                type="text"
+                placeholder="Search by title"
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={handleDateChange}
+              />
+              <select value={selectedType} onChange={handleTypeChange}>
+                <option value={null}>All Types</option>
+                <option value="1">Daily</option>
+                <option value="2">Technology</option>
+                <option value="3">Project</option>
+              </select>
+              <button onClick={resetFilters}>Reset Filters</button>
+              <button onClick={resetFilters}>Open List Articles</button>
+            </div>
           </div>
-          {blogs.map(blog => (
+          {filteredBlogs.map(blog => (
             <div key={blog.id}>
-              <h2>{blog.title}</h2>
-              <p>{blog.content}</p>
-              <p>{blog.type}</p>
+              <h2>Title: {blog.title}</h2>
               <p>Post date: {formatDate(blog.createAt)}</p>
+              <p>Type: {blog.type}</p>
+              <p>{blog.content}</p>
               <button onClick={() => deleteBlog(blog.id)}>Delete</button>
-              <button onClick={() => handleEdit(blog)}>Edit</button> 
+              <button onClick={() => handleEdit(blog)}>Edit</button>
             </div>
           ))}
-          <button onClick={handleLogout}>Logout</button> 
+          
         </div>
       )}
-    </div>
+    </div></>
   );
 };
 

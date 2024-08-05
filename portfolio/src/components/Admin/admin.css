@@ -1,0 +1,57 @@
+input, select{
+    padding: 5px 7px !important;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+textarea{
+    position: absolute;
+    min-width: 360px;
+    min-height: 50px;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    top: 40%;
+    left: 58px;
+}
+
+.admin{
+        padding-top: 50px;
+    padding-left: 50px;
+}
+
+.admin ul{
+    position: absolute;
+    top: 25%;
+    left: 40%;
+}
+
+.admin .search{
+    margin-top: 100px !important;
+}
+
+.admin button{
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.admin button:hover{
+    background-color: rgb(104, 104, 104);
+    cursor: pointer;
+}
+
+.admin .logout{
+    position: fixed !important;
+    top: 15%;
+    right: 5%;
+    padding: 10px;
+    font-size: 1.6rem;
+}
+
+.login{
+    width: 100vw;
+    height: 94.5vh;
+    padding-top: 50px;
+    padding-left: 50px;
+}

@@ -7,7 +7,7 @@ import Sky from '../../img/sky.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faGlobe, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 
-function MyBlog() {
+function Technology() {
   const [blogs, setBlogs] = useState([]);
   const [recentPosts, setRecentPosts] = useState({ daily: null, technology: null, project: null });
 
@@ -15,8 +15,9 @@ function MyBlog() {
     axios.get('https://66aefdacb05db47acc58c359.mockapi.io/api/articles')
       .then(response => {
         const sortedBlogs = response.data.sort((a, b) => b.createAt - a.createAt);
-        setBlogs(sortedBlogs);
-        setRecentPosts(getRecentPostsByType(sortedBlogs));
+        const technologyBlogs = sortedBlogs.filter(blog => blog.type === '2');
+        setBlogs(technologyBlogs); 
+        setRecentPosts(getRecentPostsByType(response.data));
       })
       .catch(error => console.error(error));
     const header = document.querySelector('header');
@@ -59,7 +60,7 @@ function MyBlog() {
       <nav className='blog-menu'>
         <ul>
           <li><Link to="/my-blog-daily"><FontAwesomeIcon icon={faSun} className='blog-icon'/>Daily</Link></li>
-          <li><Link to="/my-blog-technology"><FontAwesomeIcon icon={faGlobe} className='blog-icon'/>Technology</Link></li>
+          <li className='fill'><Link to="/my-blog"><FontAwesomeIcon icon={faGlobe} className='blog-icon'/>Technology</Link></li>
           <li><Link to="/my-blog-project"><FontAwesomeIcon icon={faLightbulb} className='blog-icon'/>Project</Link></li>
         </ul>
         <div className='blog-recent'>
@@ -119,4 +120,4 @@ function MyBlog() {
 
 };
 
-export default MyBlog;
+export default Technology;
