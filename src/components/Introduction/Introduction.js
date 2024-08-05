@@ -10,6 +10,9 @@ import html from '../../img/html.svg';
 import ps from '../../img/ps.svg';
 import js from '../../img/js.svg';
 import figma from '../../img/figma.svg';
+import cooker from '../../img/cooker.svg';
+import tech from '../../img/tech.svg';
+import language from '../../img/language.svg';
 import SkillProgress from './SkillProgress.js';
 
 function Introduction() {
@@ -84,13 +87,19 @@ function Introduction() {
           </div>
           <div className='myhobby-content'>
             <div className='myhobby-section'>
-
+              <img src={cooker} className='svgicon' />
+              <h3>Cooking</h3>
+              <p>I'm a food enthusiast, always eager to try new dishes and explore the culinary cultures of different countries. I enjoy learning about the origins, ingredients, and cooking methods of each dish. I often spend time cooking myself and sharing unique recipes with friends.</p>
             </div>
             <div className='myhobby-section'>
-
+              <img src={tech} className='svgicon' />
+              <h3>Exploring</h3>
+              <p>I'm always keen on keeping up with the latest technologies and exploring their potential. I enjoy learning about technology trends, especially in the fields of AI, IoT, and Blockchain. I often read articles, watch videos, and engage in online communities to keep track of the latest developments in the industry.</p>
             </div>
             <div className='myhobby-section'>
-
+              <img src={language} className='svgicon' />
+              <h3>Languages</h3>
+              <p>I love learning new languages. Currently, I'm learning Japanese and am fascinated by the culture of this country. I believe that learning a new language helps me broaden my perspective, knowledge, and communication skills. I often look for opportunities to practice the language by watching movies, reading books, and conversing with native speakers.</p>
             </div>
           </div>
         </div>
