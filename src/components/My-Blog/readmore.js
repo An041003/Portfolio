@@ -5,16 +5,30 @@ const ReadMore = ({ children }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const textRef = useRef(null); 
 
-  useEffect(() => {
-    const textElement = textRef.current;
-    if (textElement) {
-      const lineHeight = parseInt(window.getComputedStyle(textElement).lineHeight);
+useEffect(() => {
+  const textElement = textRef.current;
+  if (textElement) {
+    let lineHeight = window.getComputedStyle(textElement).lineHeight;
+    if (lineHeight === "normal") {
+      lineHeight = 16; // Giá trị mặc định nếu lineHeight là "normal"
+    } else {
+      lineHeight = parseInt(lineHeight);
+    }
+
+    if (!isNaN(lineHeight)) {
       const lines = Math.ceil(textElement.scrollHeight / lineHeight);
+      console.log('Giá trị lines:', lines);
+      console.log('Scroll height:', textElement.scrollHeight);
       if (lines > 4) { 
         setIsExpanded(false); 
       }
+    } else {
+      console.error('Không thể xác định lineHeight.');
     }
-  }, []); 
+  }
+}, []);
+
+      
 
   const toggleReadMore = () => {
     setIsExpanded(!isExpanded);
