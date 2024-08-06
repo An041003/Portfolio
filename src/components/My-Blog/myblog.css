@@ -94,6 +94,7 @@
     overflow: hidden;
     text-wrap: nowrap;
     font-weight: 300;
+    text-overflow: ellipsis;
 }
 
 .blog-recent .recent-date{
@@ -182,4 +183,29 @@
     padding-right: 20px !important;
     padding-left: 20px !important;
     border-radius: 10px;
+}
+
+.read-more-container {
+  position: relative;
+}
+
+.text {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: auto !important;
+}
+
+.text.expanded {
+  overflow: visible;
+  display: block;
+}
+
+.read-more-link {
+  color: rgb(144, 144, 144);
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 5px;
+  display: block;
 }

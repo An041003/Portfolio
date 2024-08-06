@@ -6,6 +6,7 @@ import './myblog.css';
 import Sky from '../../img/sky.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faGlobe, faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import ReadMore from './readmore';
 
 function MyBlog() {
   const [blogs, setBlogs] = useState([]);
@@ -57,6 +58,8 @@ function MyBlog() {
     });
   };
 
+
+
   return (
     <>
     <Header/>
@@ -98,7 +101,11 @@ function MyBlog() {
         <div key={blog.id} className='container-format'>
           <h2>{blog.title}</h2>
           <p className='container-date'>{formatDate(blog.createAt)}</p> 
-          <p className='container-content'>{convertNewLinesToBreaks(blog.content)}</p>
+          <p className='container-content'>
+            <ReadMore>
+            {convertNewLinesToBreaks(blog.content)}
+            </ReadMore>
+          </p>
           
         </div>
       ))}
