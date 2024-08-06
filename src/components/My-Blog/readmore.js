@@ -10,7 +10,7 @@ useEffect(() => {
   if (textElement) {
     let lineHeight = window.getComputedStyle(textElement).lineHeight;
     if (lineHeight === "normal") {
-      lineHeight = 16; // Giá trị mặc định nếu lineHeight là "normal"
+      lineHeight = 24; 
     } else {
       lineHeight = parseInt(lineHeight);
     }
