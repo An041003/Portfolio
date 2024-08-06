@@ -132,6 +132,12 @@ function AdminPage() {
     return isTitleMatch && isDateMatch && isTypeMatch;
   });
 
+  const convertNewLinesToBreaks = (text) => {
+    return text.split('\n').map((item, key) => {
+      return <span key={key}>{item}<br /></span>
+    });
+  };
+
   return (
     <><Header />
     <div>
@@ -208,7 +214,7 @@ function AdminPage() {
               <h2>Title: {blog.title}</h2>
               <p>Post date: {formatDate(blog.createAt)}</p>
               <p>Type: {blog.type}</p>
-              <p>{blog.content}</p>
+              <p>{convertNewLinesToBreaks(blog.content)}</p>
               <button onClick={() => deleteBlog(blog.id)}>Delete</button>
               <button onClick={() => handleEdit(blog)}>Edit</button>
             </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './Introduction.css';
 import { Link } from 'react-router-dom';
 import Header from '../Navigation/header';
-import I from '../../img/me.jpg';
+import I from '../../img/fan.jpg';
 import Pool from '../../img/pool.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';

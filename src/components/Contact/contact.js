@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../Navigation/header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
-import Come from '../../img/comehere.jpg';
+import Come from '../../img/contact.jpg';
 import Sider from '../Navigation/sider';
 
 

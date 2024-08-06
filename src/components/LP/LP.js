@@ -1,7 +1,7 @@
 import React from 'react';
 import './LP.css';
 import { Link } from 'react-router-dom';
-import Avt from '../../img/1304839.jpg';
+import Avt from '../../img/me.jpg';
 import Header from '../Navigation/header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';

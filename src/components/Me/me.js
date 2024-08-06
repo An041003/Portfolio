@@ -2,7 +2,7 @@ import React from 'react';
 import './me.css';
 import { Link } from 'react-router-dom';
 import Header from '../Navigation/header';
-import Me from '../../img/1109233.jpg';
+import Me from '../../img/pool-1.jpg';
 import Sider from '../Navigation/sider';
 
 function AboutMe() {

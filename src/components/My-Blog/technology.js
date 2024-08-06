@@ -52,6 +52,12 @@ function Technology() {
     return recentPosts;
   };
 
+  const convertNewLinesToBreaks = (text) => {
+    return text.split('\n').map((item, key) => {
+      return <span key={key}>{item}<br /></span>
+    });
+  };
+
   return (
     <>
     <Header/>
@@ -93,7 +99,7 @@ function Technology() {
         <div key={blog.id} className='container-format'>
           <h2>{blog.title}</h2>
           <p className='container-date'>{formatDate(blog.createAt)}</p> 
-          <p className='container-content'>{blog.content}</p>
+          <p className='container-content'>{convertNewLinesToBreaks(blog.content)}</p>
           
         </div>
       ))}

@@ -8,7 +8,7 @@
 
 .blog{
     width: 100vw;
-    min-height: 90vh;
+    min-height: 100vh;
     height: auto;
     padding-top: 5%;
     background-color: #18191A;
@@ -66,10 +66,11 @@
 
 .blog-recent{
     position: fixed;
-    top: 50%;
+    bottom: 2%;
     font-size: 1.2rem;
     width: 15%;
     overflow: hidden;
+    height: 350px;
 }
 
 .recent{
@@ -112,6 +113,7 @@
     height: auto;
     padding: 20px 30px;
     border-radius: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .blog-container h2{
@@ -120,14 +122,14 @@
 }
 
 .blog-container .container-date{
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: #A7AAAE;
     font-weight: bold;
     margin: 10px 0;
 }
 
 .blog-container .container-content{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: lighter;
     margin: 10px 0;
 }
