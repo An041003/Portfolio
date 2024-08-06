@@ -106,6 +106,7 @@ function MyBlog() {
             {convertNewLinesToBreaks(blog.content)}
             </ReadMore>
           </p>
+          {blog.img && <img className={blog.img ? '' : 'hidden-img'} src={blog.img} alt='/' />}
           
         </div>
       ))}

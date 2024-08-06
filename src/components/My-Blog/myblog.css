@@ -106,6 +106,7 @@
 .blog-container{
     width: 53%;
     height: auto !important;
+    text-align: center;
 }
 
 .container-format{
@@ -133,6 +134,12 @@
     font-size: 1.1rem;
     font-weight: lighter;
     margin: 10px 0;
+    text-align: left !important;
+}
+
+.blog-container img{
+    width: auto;
+    height: 200px;
 }
 
 .blog-infor{

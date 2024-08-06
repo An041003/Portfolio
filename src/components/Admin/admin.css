@@ -23,7 +23,7 @@ textarea{
 .admin ul{
     position: absolute;
     top: 25%;
-    left: 40%;
+    left: 55%;
 }
 
 .admin .search{
@@ -54,4 +54,13 @@ textarea{
     height: 94.5vh;
     padding-top: 50px;
     padding-left: 50px;
+}
+
+.admin img{
+    width: 100px;
+    height: auto;
+}
+
+.admin .hidden-img{
+    display: none;
 }
