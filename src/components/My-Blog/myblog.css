@@ -139,7 +139,8 @@
 
 .blog-container img{
     width: auto;
-    height: 200px;
+    height: 400px;
+    max-width: 90%;
 }
 
 .blog-infor{
