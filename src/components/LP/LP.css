@@ -100,8 +100,8 @@
   }
 
   .avt {
-    left: 20%; 
-    transform: translateY(-50%);
+    left: 50%; 
+    transform: translateX(-50%);
   }
 
   .Myavatar {
@@ -139,11 +139,11 @@
 
 @media (max-width: 480px) {
   .name-text {
-    top: 45%; 
+    top: 50%; 
   }
 
   .avt {
-    top: 40%; 
+    top: 15%; 
   }
 
   .Myavatar {
