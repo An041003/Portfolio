@@ -239,3 +239,115 @@ footer{
 footer span{
     margin: 10px 0;
 }
+
+@media (max-width: 768px) {
+  .back{
+    display: none;
+  }
+
+  .preamble {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .preamble-text {
+    margin-left: 0;
+    margin-top: 30%;
+    text-align: center;
+    font-size: 2.4rem;
+  }
+
+  .preamble-text p:nth-of-type(2) {
+    margin-left: 0;
+  }
+
+  .preamble-underline{
+    width: 100%;
+  }
+
+  .preamble-text .preamble-underline:nth-of-type(2) {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .scrolldown{
+    display: none;
+  }
+
+  .preamble-img {
+    width: 100%; 
+    height: auto; 
+    margin-top: 20px;
+  }
+
+  .whoiam {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .whoiam-content {
+    width: 90%; 
+    margin-right: 0;
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
+
+  .whoiam-img {
+    width: 100%; 
+    height: auto; 
+  }
+
+  .my-title p:nth-of-type(1) {
+    display: none;
+  }
+
+  .my-title p:nth-of-type(2) {
+    font-size: 1.4rem;
+  }
+
+    .my-title p:nth-of-type(3) {
+    font-size: 1.4rem;
+  }
+
+
+  .myhobby-content {
+    flex-direction: column; 
+    align-items: center; 
+    margin: 0;
+  }
+
+  .myhobby-section {
+    width: 100%; /* Cho phép phần tử chiếm toàn bộ chiều rộng */
+    margin-bottom: 20px;
+  }
+
+  .myskill-content {
+    flex-direction: column; /* Xếp theo cột */
+    align-items: center; /* Căn giữa theo chiều ngang */
+  }
+
+  .myskill-col {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%; /* Cho phép cột chiếm toàn bộ chiều rộng */
+    margin-bottom: 20px;
+  }
+
+  .myskill-row {
+    flex-direction: column; /* Xếp theo cột */
+    align-items: center; /* Căn giữa theo chiều ngang */
+  }
+
+  .skill-text {
+    flex-direction: column; /* Xếp theo cột */
+    align-items: center; /* Căn giữa theo chiều ngang */
+  }
+
+  .skill-text p:nth-of-type(2) {
+    margin-right: 0;
+  }
+
+  footer {
+    display: none !important;
+  }
+}

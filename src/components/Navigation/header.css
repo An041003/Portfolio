@@ -35,6 +35,10 @@ header {
   color: aliceblue;
 }
 
+.light-bg .logo a { 
+  color: #1c2532; 
+}
+
 nav ul {
   list-style: none;
   margin: 0;
