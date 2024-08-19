@@ -97,3 +97,24 @@ nav ul li button {
 .dropdown-menu li:last-child {
   border-bottom: none !important; 
 }
+
+@media (max-width: 768px) {
+  .logo a{
+    font-size: 1.3rem;
+    margin-left: 15px;
+  }
+
+  nav .icon {
+  font-size: 1.3rem;
+}
+
+nav ul li{
+  margin: 0 10px;
+}
+
+nav ul li button {
+    font-size: 1.3rem;
+    margin-top: 0.1rem;
+    margin-right: 0;
+}
+}
