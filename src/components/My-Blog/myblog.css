@@ -271,13 +271,13 @@
 
     .blog-menu ul li{
        width: auto !important;
-       padding-right: 3%;
+       padding-right: 2%;
     }
 
     .blog-container{
     width: 90%;
     min-width: 0px;
-    margin-left: 3%;
+    margin-left: 4%;
 }
 
 
