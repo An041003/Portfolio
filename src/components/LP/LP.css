@@ -95,8 +95,9 @@
 @media (max-width: 768px) {
   .name-text {
     margin-top: 2rem;
-    right: 16%; 
+    right: 50%; 
     text-align: center; 
+    transform: translateX(50%);
   }
 
   .avt {
@@ -139,11 +140,11 @@
 
 @media (max-width: 480px) {
   .name-text {
-    top: 50%; 
+    top: 55%; 
   }
 
   .avt {
-    top: 15%; 
+    top: 20%; 
   }
 
   .Myavatar {
@@ -152,11 +153,11 @@
   }
 
   .name-text h1 {
-    font-size: 2.5rem; 
+    font-size: 1.8rem; 
   }
 
   .name-text h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .name-text p {
