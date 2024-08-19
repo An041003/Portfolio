@@ -102,6 +102,7 @@ nav ul li button {
   .logo a{
     font-size: 1.3rem;
     margin-left: 15px;
+    font-weight: bolder;
   }
 
   nav .icon {
