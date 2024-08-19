@@ -8,3 +8,9 @@
     top: 240px;
     left: 50px;
 }
+
+@media (max-width: 1024px){
+    .sider{
+        display: none;
+    }
+}

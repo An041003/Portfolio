@@ -92,23 +92,22 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .name-text {
     margin-top: 2rem;
     right: 50%; 
     text-align: center; 
-    transform: translateX(50%);
   }
 
   .avt {
-    left: 50%; 
-    transform: translateX(-50%);
+    left: 55%; 
   }
 
   .Myavatar {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
   }
+  
 
   .horizontal {
     bottom: 7%;
@@ -126,7 +125,7 @@
 }
   
   .name-text h1 {
-    font-size: 3rem; 
+    font-size: 2.4rem; 
   }
 
   .name-text h2 {
@@ -141,10 +140,12 @@
 @media (max-width: 480px) {
   .name-text {
     top: 55%; 
+    transform: translateX(50%);
   }
 
   .avt {
     top: 20%; 
+    transform: translateX(-55%);
   }
 
   .Myavatar {

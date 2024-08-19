@@ -119,3 +119,17 @@ nav ul li button {
     margin-right: 0;
 }
 }
+@media (max-width: 400px) {
+    .logo a{
+    font-size: 1.2rem;
+  }
+
+  nav .icon {
+  font-size: 1.2rem;
+}
+
+
+nav ul li button {
+    font-size: 1.2rem;
+}
+}
