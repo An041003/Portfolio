@@ -240,7 +240,7 @@ footer span{
     margin: 10px 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .back{
     display: none;
   }
@@ -290,11 +290,16 @@ footer span{
     margin-right: 0;
     margin-top: 0;
     font-size: 1.2rem;
+    padding-bottom: 40%;
   }
 
   .whoiam-img {
     width: 100%; 
     height: auto; 
+  }
+
+  .my-title{
+    text-align: center;
   }
 
   .my-title p:nth-of-type(1) {
@@ -313,34 +318,47 @@ footer span{
   .myhobby-content {
     flex-direction: column; 
     align-items: center; 
+    text-align: center;
     margin: 0;
+    margin-top: 30px;
+    padding-bottom: 40%;
+    font-size: 1.2rem;
   }
 
   .myhobby-section {
-    width: 100%; /* Cho phép phần tử chiếm toàn bộ chiều rộng */
+    width: 100%; 
     margin-bottom: 20px;
   }
 
+  .myhobby-section p{
+    font-size: 1.1rem;
+  }
+
+
   .myskill-content {
-    flex-direction: column; /* Xếp theo cột */
-    align-items: center; /* Căn giữa theo chiều ngang */
+    flex-direction: column; 
+    align-items: center; 
   }
 
   .myskill-col {
     margin-left: 0;
     margin-right: 0;
-    width: 100%; /* Cho phép cột chiếm toàn bộ chiều rộng */
+    width: 100%; 
     margin-bottom: 20px;
   }
 
   .myskill-row {
-    flex-direction: column; /* Xếp theo cột */
-    align-items: center; /* Căn giữa theo chiều ngang */
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .myskill-row img{
+    margin-left: 20px;
   }
 
   .skill-text {
-    flex-direction: column; /* Xếp theo cột */
-    align-items: center; /* Căn giữa theo chiều ngang */
+    flex-direction: column; 
+    align-items: center; 
   }
 
   .skill-text p:nth-of-type(2) {
@@ -349,5 +367,27 @@ footer span{
 
   footer {
     display: none !important;
+  }
+}
+
+@media(max-width:450px){
+      .myskill{
+    top: 344%;
+    padding-bottom: 10%;
+  }
+
+  .myskill .my-title{
+    margin-left: 22%;
+  }
+
+  
+  .myhobby{
+    top: 190%;
+    align-items: center; 
+    text-align: center;
+  }
+
+  .myhobby .my-title{
+    margin-left: 22%;
   }
 }

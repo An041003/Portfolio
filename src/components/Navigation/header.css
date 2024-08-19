@@ -125,15 +125,15 @@ nav ul li button {
 }
 @media (max-width: 400px) {
     .logo a{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   nav .icon {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 
 nav ul li button {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 }
