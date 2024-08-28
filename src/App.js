@@ -10,6 +10,7 @@ import Daily from './components/My-Blog/daily';
 import Technology from './components/My-Blog/technology';
 import Project from './components/My-Blog/project';
 import Ad from './components/Admin/admin';
+import Test from './test';
 function App() {
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/my-blog-technology' element={<Technology/>} />
         <Route path='/my-blog-project' element={<Project/>} />
         <Route path='/ad' element={<Ad />} />
+        <Route path='/test' element={<Test />} />
       </Routes>
     </div>
   );

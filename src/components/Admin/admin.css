@@ -22,7 +22,7 @@ textarea{
 
 .admin ul{
     position: absolute;
-    top: 25%;
+    top: 15%;
     left: 55%;
 }
 
@@ -64,6 +64,29 @@ textarea{
 .admin .hidden-img{
     display: none;
 }
+
+.toolbarClassName {
+  border: none;
+  box-shadow: none;
+}
+
+.toolbarClassName img {
+  width: auto !important;
+}
+
+.wrapperClassName {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.editorClassName {
+  min-height: 50px;
+  padding: 10px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
 
 @media (max-width: 768px) {
   .admin {

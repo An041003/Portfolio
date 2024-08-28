@@ -25,54 +25,50 @@ function MyBlog() {
   }, []);
 
   const formatDate = (timestamp) => {
-  const date = new Date(timestamp * 1000); 
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric'
-  });
-};
+    const date = new Date(timestamp * 1000);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric'
+    });
+  };
 
- const getRecentPostsByType = (blogs) => {
+  const getRecentPostsByType = (blogs) => {
     const types = ['1', '2', '3']; // '1' for Daily, '2' for Technology, '3' for Project
     const recentPosts = {};
 
     types.forEach(type => {
       const filteredBlogs = blogs.filter(blog => blog.type === type);
-    if (filteredBlogs.length > 0) {
-      const sortedBlogs = filteredBlogs.sort((a, b) => b.createAt - a.createAt);
-      if (type === '1') recentPosts.daily = sortedBlogs[0];
-      if (type === '2') recentPosts.technology = sortedBlogs[0];
-      if (type === '3') recentPosts.project = sortedBlogs[0];
-    }
+      if (filteredBlogs.length > 0) {
+        const sortedBlogs = filteredBlogs.sort((a, b) => b.createAt - a.createAt);
+        if (type === '1') recentPosts.daily = sortedBlogs[0];
+        if (type === '2') recentPosts.technology = sortedBlogs[0];
+        if (type === '3') recentPosts.project = sortedBlogs[0];
+      }
     });
 
     return recentPosts;
   };
 
-    const convertNewLinesToBreaks = (text) => {
-    return text.split('\n').map((item, key) => {
-      return <span key={key}>{item}<br /></span>
-    });
+  const renderContent = (content) => {
+    return { __html: content };
   };
-
-
 
   return (
     <>
-    <Header/>
-    <main>
-      <div className='blog'>
-      <nav className='blog-menu'>
-        <ul>
-          <li><Link to="/my-blog-daily"><FontAwesomeIcon icon={faSun} className='blog-icon'/>Daily</Link></li>
-          <li><Link to="/my-blog-technology"><FontAwesomeIcon icon={faGlobe} className='blog-icon'/>Technology</Link></li>
-          <li><Link to="/my-blog-project"><FontAwesomeIcon icon={faLightbulb} className='blog-icon'/>Project</Link></li>
-        </ul>
-        <div className='blog-recent'>
-         <h3>Recent Posts</h3>
+      <Header />
+      <main>
+        <div className='blog'>
+          <nav className='blog-menu'>
+            <ul>
+              <li><Link to="/my-blog-daily"><FontAwesomeIcon icon={faSun} className='blog-icon' />Daily</Link></li>
+              <li><Link to="/my-blog-technology"><FontAwesomeIcon icon={faGlobe} className='blog-icon' />Technology</Link></li>
+              <li><Link to="/my-blog-project"><FontAwesomeIcon icon={faLightbulb} className='blog-icon' />Project</Link></li>
+            </ul>
+            <div className='blog-recent'>
+              <h3>Recent Posts</h3>
               {recentPosts.daily && (
                 <div className='recent'>
                   <h4>Daily</h4>
@@ -94,43 +90,37 @@ function MyBlog() {
                   <p className='recent-date'>{formatDate(recentPosts.project.createAt)}</p>
                 </div>
               )}
-        </div>  
-      </nav>
-      <div className='blog-container'>
-      {blogs.map(blog => (
-        <div key={blog.id} className='container-format'>
-          <h2>{blog.title}</h2>
-          <p className='container-date'>{formatDate(blog.createAt)}</p> 
-          <p className='container-content'>
-            <ReadMore>
-            {convertNewLinesToBreaks(blog.content)}
-            </ReadMore>
-          </p>
-          {blog.img && <img className={blog.img ? '' : 'hidden-img'} src={blog.img} alt='/' />}
-          
+            </div>
+          </nav>
+          <div className='blog-container'>
+            {blogs.map(blog => (
+              <div key={blog.id} className='container-format'>
+                <h2>{blog.title}</h2>
+                <p className='container-date'>{formatDate(blog.createAt)}</p>
+                <div className='container-content'>
+                  <ReadMore>
+                    <div dangerouslySetInnerHTML={renderContent(blog.content)} />
+                  </ReadMore>
+                </div>
+                {blog.img && <img className={blog.img ? '' : 'hidden-img'} src={blog.img} alt='/' />}
+              </div>
+            ))}
+          </div>
+          <nav className='blog-infor'>
+            <div className='blog-aboutme'>
+              <img src={Sky} className="blog-img" />
+              <p>Hi there, my name is An. Welcome to my Blog where I tell my own stories, the journey I've taken and my memories over years.</p>
+            </div>
+            <div className='blog-contact'>
+              <h3>Keep in touch </h3>
+              <span>binhan214981@gmail.com</span>
+              <span>0784073629</span>
+            </div>
+          </nav>
         </div>
-      ))}
-    </div>
-      <nav className='blog-infor'>
-        <div className='blog-aboutme'>
-          <img src={Sky} className="blog-img" />
-          <p>Hi there, my name is An. Welcome to my Blog where I tell my own stories, the journey I've taken and my memories over years.</p>
-        </div>
-        <div className='blog-contact'>
-          <h3>Keep in touch </h3>
-        <span>binhan214981@gmail.com</span>
-        <span>0784073629</span>
-        </div>
-      </nav>
-      
-    </div>
-    </main>
-    
+      </main>
     </>
-    
   );
-  
-
-};
+}
 
 export default MyBlog;
