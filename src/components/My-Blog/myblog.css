@@ -235,10 +235,23 @@
         display: none;
     }
 
+    .blog{
+        display:flex;
+        flex-direction: column;
+    }
+
+    .blog-menu{
+        width: 100%;
+        
+    }
+
     .blog-menu ul{
-        width: 20px;
-        overflow: hidden;
+        position: relative;
+        display: flex;
         flex-direction: row;
+        width: 100%;
+        overflow: visible;
+        justify-content: space-around;
         padding: 0;
         border: none;
     }
@@ -246,6 +259,12 @@
     .blog-menu ul li{
         margin: 0;
     }
+
+        .blog-container{
+    width: 90%;
+    min-width: 0px;
+    margin-left: 4%;
+}
 }
 
 @media(max-width:450px){
