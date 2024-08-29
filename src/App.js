@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { useGesture } from '@use-gesture/react';
 import LP from './components/LP/LP';
 import Me from './components/Me/me';
 import Contact from './components/Contact/contact';
@@ -18,6 +17,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const [startY, setStartY] = useState(null);
 
   const pages = ['/', '/blog', '/about', '/contact'];
 
@@ -47,13 +47,11 @@ function App() {
     }
   }, 300), [location.pathname, navigate]);
 
-  const bind = useGesture({
-    onDrag: ({ movement: [mx, my] }) => {
-      if (Math.abs(mx) > Math.abs(my)) {
-        // Horizontal movement is not used
-        return;
-      }
-      if (my > 50) {
+  const handleTouchMove = (event) => {
+    if (startY !== null) {
+      const touch = event.touches[0];
+      const deltaY = touch.clientY - startY;
+      if (deltaY > 0) {
         // Swipe down
         setCurrentPageIndex((prevIndex) => {
           const prevIndexUpdated = Math.max(prevIndex - 1, 0);
@@ -62,7 +60,7 @@ function App() {
           }
           return prevIndexUpdated;
         });
-      } else if (my < -50) {
+      } else if (deltaY < 0) {
         // Swipe up
         setCurrentPageIndex((prevIndex) => {
           const nextIndex = Math.min(prevIndex + 1, pages.length - 1);
@@ -72,18 +70,28 @@ function App() {
           return nextIndex;
         });
       }
+      setStartY(null);
     }
-  });
+  };
+
+  const handleTouchStart = (event) => {
+    const touch = event.touches[0];
+    setStartY(touch.clientY);
+  };
 
   useEffect(() => {
     window.addEventListener('wheel', handleScroll);
     window.addEventListener('scroll', handleScroll); // Add scroll event for touchpad
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
 
     return () => {
       window.removeEventListener('wheel', handleScroll);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [handleScroll]);
+  }, [handleScroll, handleTouchMove, handleTouchStart]);
 
   useEffect(() => {
     // Update currentPageIndex based on the current URL path
@@ -94,7 +102,7 @@ function App() {
   }, [location.pathname, pages]);
 
   return (
-    <div {...bind()} style={{ height: '100vh', overflow: 'hidden' }}>
+    <div>
       <Routes>
         <Route path='/' element={<LP />} />
         <Route path='/blog' element={<Blog />} />
