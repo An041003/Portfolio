@@ -26,13 +26,25 @@ function App() {
 
       if (delta > 0) {
         // Scroll down
-        setCurrentPageIndex((prevIndex) => Math.min(prevIndex + 1, pages.length - 1));
+        setCurrentPageIndex((prevIndex) => {
+          const nextIndex = Math.min(prevIndex + 1, pages.length - 1);
+          if (nextIndex !== prevIndex) {
+            navigate(pages[nextIndex]);
+          }
+          return nextIndex;
+        });
       } else {
         // Scroll up
-        setCurrentPageIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+        setCurrentPageIndex((prevIndex) => {
+          const prevIndexUpdated = Math.max(prevIndex - 1, 0);
+          if (prevIndexUpdated !== prevIndex) {
+            navigate(pages[prevIndexUpdated]);
+          }
+          return prevIndexUpdated;
+        });
       }
     }
-  }, 300), [location.pathname, pages]);
+  }, 300), [location.pathname, navigate]);
 
   useEffect(() => {
     window.addEventListener('wheel', handleScroll);
@@ -45,8 +57,12 @@ function App() {
   }, [handleScroll]);
 
   useEffect(() => {
-    navigate(pages[currentPageIndex]);
-  }, [currentPageIndex, navigate]);
+    // Update currentPageIndex based on the current URL path
+    const index = pages.indexOf(location.pathname);
+    if (index !== -1) {
+      setCurrentPageIndex(index);
+    }
+  }, [location.pathname, pages]);
 
   return (
     <div>
