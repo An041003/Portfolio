@@ -7,6 +7,9 @@ import { Editor as WysiwygEditor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 function AdminPage() {
   const [blogs, setBlogs] = useState([]);
@@ -18,7 +21,9 @@ function AdminPage() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentBlog, setCurrentBlog] = useState(null); 
+  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   useEffect(() => {
     axios.get('https://66aefdacb05db47acc58c359.mockapi.io/api/articles')
       .then(response => {
@@ -63,6 +68,7 @@ function AdminPage() {
     }
     setNewBlog({ title: '', content: '', type: '', img: '' });
     setEditorState(EditorState.createEmpty());
+    setIsFormModalOpen(false);
   };
 
   const updateBlog = (id, updatedBlog) => {
@@ -73,6 +79,7 @@ function AdminPage() {
         setEditingBlog(null);
         setNewBlog({ title: '', content: '', type: '', img: '' });
         setEditorState(EditorState.createEmpty());
+        setIsFormModalOpen(false);
       })
       .catch(error => console.error(error));
   };
@@ -91,6 +98,7 @@ function AdminPage() {
       const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
       setEditorState(EditorState.createWithContent(contentState));
     }
+    setIsFormModalOpen(true);
   };
 
   const formatDate = (timestamp) => {
@@ -135,6 +143,19 @@ function AdminPage() {
     setSelectedType('All Types');
   };
 
+  const handleViewDetail = (blog) => {
+    setCurrentBlog(blog);
+    setIsModalOpen(true); // Mở modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Đóng modal
+  };
+
+  const closeFormModal = () => {
+    setIsFormModalOpen(false); // Đóng form modal
+  };
+
   const filteredBlogs = blogs.filter(blog => {
     const isTitleMatch = searchTerm.trim() === '' || blog.title.toLowerCase().includes(searchTerm.toLowerCase());
     const isDateMatch = selectedDate === '' || new Date(blog.createAt * 1000).getDate() === new Date(selectedDate).getDate();
@@ -145,10 +166,6 @@ function AdminPage() {
 const handleEditorChange = (state) => {
     setEditorState(state);
     let htmlContent = draftToHtml(convertToRaw(state.getCurrentContent()));
-
-    // Loại bỏ thẻ <p></p>
-    htmlContent = htmlContent.replace(/<p>/g, '').replace(/<\/p>/g, '');
-    
     setNewBlog({ ...newBlog, content: htmlContent });
 };
 
@@ -172,49 +189,61 @@ const handleEditorChange = (state) => {
           <div className='admin'>
             <h1>Admin Page</h1>
             <button onClick={handleLogout} className='logout'>Logout</button>
-
-            <div className='add-blog'>
-              <h3>Add new article</h3>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Title"
-                  value={newBlog.title}
-                  onChange={e => setNewBlog({ ...newBlog, title: e.target.value })}
-                />
-                <input
-                  type="text"
-                  placeholder="Type"
-                  value={newBlog.type}
-                  onChange={e => setNewBlog({ ...newBlog, type: e.target.value })}
-                />
-                <input
-                  type="text"
-                  placeholder="ImgUrl"
-                  value={newBlog.img}
-                  onChange={e => setNewBlog({ ...newBlog, img: e.target.value })}
-                />
-                {/* Sử dụng rich-text editor thay thế cho textarea */}
-                <WysiwygEditor
-                  editorState={editorState}
-                  toolbarClassName="toolbarClassName"
-                  wrapperClassName="wrapperClassName"
-                  editorClassName="editorClassName"
-                  onEditorStateChange={handleEditorChange}
-                  placeholder="Start writing..."
-                />
-                <button onClick={addBlog}>Add Blog</button>
-                {editingBlog && (
-                  <button onClick={() => updateBlog(editingBlog.id, newBlog)}>Update Blog</button>
-                )}
-                <ul>
-                  Note types:
-                  <li>1. Daily</li>
-                  <li>2. Technology</li>
-                  <li>3. Project</li>
-                </ul>
-              </div>
-            </div>
+            <button onClick={() => setIsFormModalOpen(true)} className='open-form-modal'>Add new article</button>
+            <Modal
+        isOpen={isFormModalOpen}
+        onRequestClose={closeFormModal}
+        contentLabel="Add/Edit Blog"
+        className="modal"
+        overlayClassName="modal-overlay"
+      >
+        <div className='add-blog'>
+          <h3>{editingBlog ? 'Edit Article' : 'Add new article'}</h3>
+          <div>
+            <ul>
+              Note types:
+              <li>1. Daily</li>
+              <li>2. Technology</li>
+              <li>3. Project</li>
+            </ul>
+            <input
+              type="text"
+              placeholder="Title"
+              value={newBlog.title}
+              onChange={e => setNewBlog({ ...newBlog, title: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Type"
+              value={newBlog.type}
+              onChange={e => setNewBlog({ ...newBlog, type: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="ImgUrl"
+              value={newBlog.img}
+              onChange={e => setNewBlog({ ...newBlog, img: e.target.value })}
+            />
+            <WysiwygEditor
+              editorState={editorState}
+              toolbarClassName="toolbarClassName"
+              wrapperClassName="wrapperClassName"
+              editorClassName="editorClassName"
+              onEditorStateChange={state => {
+                setEditorState(state);
+                let htmlContent = draftToHtml(convertToRaw(state.getCurrentContent()));
+                htmlContent = htmlContent.replace(/<p>/g, '').replace(/<\/p>/g, '');
+                setNewBlog({ ...newBlog, content: htmlContent });
+              }}
+              placeholder="Start writing..."
+            />
+            <button onClick={editingBlog ? () => updateBlog(editingBlog.id, newBlog) : addBlog}>
+              {editingBlog ? 'Update Blog' : 'Add Blog'}
+            </button>
+            <button onClick={closeFormModal}>Close</button>
+          </div>
+        </div>
+            </Modal>
 
             <div className='blog-list'>
               <h3>Articles List</h3>
@@ -237,6 +266,7 @@ const handleEditorChange = (state) => {
                   <option value="3">Project</option>
                 </select>
                 <button onClick={resetFilters}>Reset Filters</button>
+                <button onClick={resetFilters}>Open Articles List</button>
               </div>
 
               <table className="blog-table">
@@ -257,6 +287,7 @@ const handleEditorChange = (state) => {
                       <td>
                         <button onClick={() => handleEdit(blog)}>Edit</button>
                         <button onClick={() => deleteBlog(blog.id)}>Delete</button>
+                        <button onClick={() => handleViewDetail(blog)}>View</button>
                       </td>
                     </tr>
                   ))}
@@ -267,6 +298,22 @@ const handleEditorChange = (state) => {
           </div>
         )}
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="View Blog Detail"
+        className="modal"
+        overlayClassName="modal-overlay"
+      >
+        {currentBlog && (
+          <>
+            <h2>{currentBlog.title}</h2>
+            <p>{currentBlog.type}</p>
+            <div dangerouslySetInnerHTML={{ __html: currentBlog.content }}></div>
+            <button onClick={closeModal}>Close</button>
+          </>
+        )}
+      </Modal>
     </>
   );
 }
