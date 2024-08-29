@@ -1,10 +1,7 @@
 import React from 'react';
 import './LP.css';
-import { Link } from 'react-router-dom';
 import Avt from '../../img/me.jpg';
 import Header from '../Navigation/header';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 function LandingPage() {
   return (
@@ -16,8 +13,7 @@ function LandingPage() {
       <main>
         
         <nav className='horizontal'>
-          <p>S e e  M o r e</p>
-          <Link to="/blog" className='seemore'><FontAwesomeIcon icon ={faChevronDown}/></Link>
+          <p>SCROLLDOWN—————</p>
         </nav>
         <div className="name">
           <div className="name-text">

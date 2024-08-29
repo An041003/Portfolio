@@ -69,14 +69,13 @@
 
 .horizontal{
   position: absolute;
-  bottom: 27%;
-  left: 5%;
+  bottom: 11%;
+  left: -5%;
+  transform: rotate(90deg);
 }
 
 .horizontal p {
-  font-size: 1.6rem;
-  width: 1.6rem;
-  height: auto;
+  font-size: 1.1rem;
   align-items: center;
   text-align: center;
   color: white;
