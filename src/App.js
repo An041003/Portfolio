@@ -51,7 +51,7 @@ function App() {
     if (startY !== null) {
       const touch = event.touches[0];
       const deltaY = touch.clientY - startY;
-      if (deltaY > 0) {
+      if (deltaY > 10) {
         // Swipe down
         setCurrentPageIndex((prevIndex) => {
           const prevIndexUpdated = Math.max(prevIndex - 1, 0);
@@ -60,7 +60,7 @@ function App() {
           }
           return prevIndexUpdated;
         });
-      } else if (deltaY < 0) {
+      } else if (deltaY < -10) {
         // Swipe up
         setCurrentPageIndex((prevIndex) => {
           const nextIndex = Math.min(prevIndex + 1, pages.length - 1);
