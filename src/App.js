@@ -17,6 +17,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const [startY, setStartY] = useState(null);
 
   const pages = ['/', '/blog', '/about', '/contact'];
 
@@ -46,15 +47,51 @@ function App() {
     }
   }, 300), [location.pathname, navigate]);
 
+  const handleTouchMove = (event) => {
+    if (startY !== null) {
+      const touch = event.touches[0];
+      const deltaY = touch.clientY - startY;
+      if (deltaY > 50) {
+        // Swipe down
+        setCurrentPageIndex((prevIndex) => {
+          const prevIndexUpdated = Math.max(prevIndex - 1, 0);
+          if (prevIndexUpdated !== prevIndex) {
+            navigate(pages[prevIndexUpdated]);
+          }
+          return prevIndexUpdated;
+        });
+      } else if (deltaY < -50) {
+        // Swipe up
+        setCurrentPageIndex((prevIndex) => {
+          const nextIndex = Math.min(prevIndex + 1, pages.length - 1);
+          if (nextIndex !== prevIndex) {
+            navigate(pages[nextIndex]);
+          }
+          return nextIndex;
+        });
+      }
+      setStartY(null);
+    }
+  };
+
+  const handleTouchStart = (event) => {
+    const touch = event.touches[0];
+    setStartY(touch.clientY);
+  };
+
   useEffect(() => {
     window.addEventListener('wheel', handleScroll);
     window.addEventListener('scroll', handleScroll); // Add scroll event for touchpad
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
 
     return () => {
       window.removeEventListener('wheel', handleScroll);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [handleScroll]);
+  }, [handleScroll, handleTouchMove, handleTouchStart]);
 
   useEffect(() => {
     // Update currentPageIndex based on the current URL path

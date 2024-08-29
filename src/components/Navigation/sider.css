@@ -1,6 +1,7 @@
 .sider{
+    display: none;
     position: absolute;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     font-size: 3rem;
     height: 300px;
