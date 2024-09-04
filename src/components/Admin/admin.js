@@ -4,10 +4,11 @@ import './admin.css';
 import Header from '../Navigation/header';
 import { Editor, EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor as WysiwygEditor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
+import draftToMarkdown from 'draftjs-to-markdown';
 import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import Modal from 'react-modal';
+import Markdown from 'react-markdown';
 
 Modal.setAppElement('#root');
 
@@ -19,11 +20,13 @@ function AdminPage() {
   const [password, setPassword] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedType, setSelectedType] = useState(null);
+  const [selectedType, setSelectedType] = useState('All Types');
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null); 
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+  // const [isBlogListOpen, setIsBlogListOpen] = useState(false);
+  const [showNav, setShowNav] = useState(false); 
   useEffect(() => {
     axios.get('https://66aefdacb05db47acc58c359.mockapi.io/api/articles')
       .then(response => {
@@ -41,6 +44,9 @@ function AdminPage() {
           setBlogs(sortedBlogs);
         })
         .catch(error => console.error(error));
+        setSearchTerm('');
+        setSelectedDate('');
+        setSelectedType('All Types');
     }
   }, [isLoggedin]);
 
@@ -93,11 +99,8 @@ function AdminPage() {
   const handleEdit = (blog) => {
     setEditingBlog(blog);
     setNewBlog({ title: blog.title, content: blog.content, type: blog.type, img: blog.img });
-    const contentBlock = htmlToDraft(blog.content);
-    if (contentBlock) {
-      const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+      const contentState = ContentState.createFromText(blog.content); 
       setEditorState(EditorState.createWithContent(contentState));
-    }
     setIsFormModalOpen(true);
   };
 
@@ -153,8 +156,19 @@ function AdminPage() {
   };
 
   const closeFormModal = () => {
-    setIsFormModalOpen(false); // Đóng form modal
+    setIsFormModalOpen(false); 
+    setEditingBlog(null); 
+    setNewBlog({ title: '', content: '', type: '', img: '' }); 
+    setEditorState(EditorState.createEmpty());
   };
+
+  // const handleOpenBlogList = () => {
+  //   setIsBlogListOpen(true);
+  // };
+
+  // const handleCloseBlogList = () => {
+  //   setIsBlogListOpen(false);
+  // };
 
   const filteredBlogs = blogs.filter(blog => {
     const isTitleMatch = searchTerm.trim() === '' || blog.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -163,12 +177,11 @@ function AdminPage() {
     return isTitleMatch && isDateMatch && isTypeMatch;
   });
 
-const handleEditorChange = (state) => {
-    setEditorState(state);
-    let htmlContent = draftToHtml(convertToRaw(state.getCurrentContent()));
-    setNewBlog({ ...newBlog, content: htmlContent });
-};
+  const toggleNav = () => {
+    setShowNav(!showNav);
+  };
 
+  
 
   return (
     <>
@@ -190,6 +203,59 @@ const handleEditorChange = (state) => {
             <h1>Admin Page</h1>
             <button onClick={handleLogout} className='logout'>Logout</button>
             <button onClick={() => setIsFormModalOpen(true)} className='open-form-modal'>Add new article</button>
+            <button onClick={toggleNav} className='open-blog-list'>Filters</button>
+            {showNav && (
+              <div className='blog-list'>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Search by title"
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                />
+                <input
+                  type="date"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                />
+                <select value={selectedType} onChange={handleTypeChange}>
+                  <option value={null}>All Types</option>
+                  <option value="1">Daily</option>
+                  <option value="2">Technology</option>
+                  <option value="3">Project</option>
+                </select>
+                <button onClick={resetFilters}>Reset Filters</button>
+                {/* <button onClick={handleCloseBlogList}>Close</button> */}
+              </div>
+              </div>
+            )} 
+            <h3>Articles List</h3>
+            <table className="blog-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredBlogs.map(blog => (
+                    <tr key={blog.id}>
+                      <td className='blog-title'>{blog.title}</td>
+                      <td>{blog.type}</td>
+                      <td>{formatDate(blog.createAt)}</td>
+                      <td>
+                        <button onClick={() => handleEdit(blog)}>Edit</button>
+                        <button onClick={() => deleteBlog(blog.id)}>Delete</button>
+                        <button onClick={() => handleViewDetail(blog)}>View</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+            </table>
+            <button onClick={deleteAllBlogs}>Delete all</button>            
+                         
             <Modal
         isOpen={isFormModalOpen}
         onRequestClose={closeFormModal}
@@ -231,7 +297,7 @@ const handleEditorChange = (state) => {
               editorClassName="editorClassName"
               onEditorStateChange={state => {
                 setEditorState(state);
-                let htmlContent = draftToHtml(convertToRaw(state.getCurrentContent()));
+                let htmlContent = draftToMarkdown(convertToRaw(state.getCurrentContent()), {breaks: true});
                 htmlContent = htmlContent.replace(/<p>/g, '').replace(/<\/p>/g, '');
                 setNewBlog({ ...newBlog, content: htmlContent });
               }}
@@ -244,61 +310,7 @@ const handleEditorChange = (state) => {
           </div>
         </div>
             </Modal>
-
-            <div className='blog-list'>
-              <h3>Articles List</h3>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Search by title"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                />
-                <input
-                  type="date"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                />
-                <select value={selectedType} onChange={handleTypeChange}>
-                  <option value={null}>All Types</option>
-                  <option value="1">Daily</option>
-                  <option value="2">Technology</option>
-                  <option value="3">Project</option>
-                </select>
-                <button onClick={resetFilters}>Reset Filters</button>
-                <button onClick={resetFilters}>Open Articles List</button>
-              </div>
-
-              <table className="blog-table">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Type</th>
-                    <th>Date</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredBlogs.map(blog => (
-                    <tr key={blog.id}>
-                      <td>{blog.title}</td>
-                      <td>{blog.type}</td>
-                      <td>{formatDate(blog.createAt)}</td>
-                      <td>
-                        <button onClick={() => handleEdit(blog)}>Edit</button>
-                        <button onClick={() => deleteBlog(blog.id)}>Delete</button>
-                        <button onClick={() => handleViewDetail(blog)}>View</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <button onClick={deleteAllBlogs}>Delete all</button>
-            </div>
-          </div>
-        )}
-      </div>
-      <Modal
+            <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="View Blog Detail"
@@ -308,12 +320,16 @@ const handleEditorChange = (state) => {
         {currentBlog && (
           <>
             <h2>{currentBlog.title}</h2>
-            <p>{currentBlog.type}</p>
-            <div dangerouslySetInnerHTML={{ __html: currentBlog.content }}></div>
+            <Markdown breaks={true}>{currentBlog.content}</Markdown> 
             <button onClick={closeModal}>Close</button>
           </>
         )}
-      </Modal>
+            </Modal>             
+          </div>
+        )}
+       
+      </div>
+
     </>
   );
 }

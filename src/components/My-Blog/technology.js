@@ -7,7 +7,7 @@ import Sky from '../../img/sky.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faGlobe, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import ReadMore from './readmore';
-
+import Markdown from 'react-markdown';
 function Technology() {
   const [blogs, setBlogs] = useState([]);
   const [recentPosts, setRecentPosts] = useState({ daily: null, technology: null, project: null });
@@ -102,7 +102,7 @@ function Technology() {
           <p className='container-date'>{formatDate(blog.createAt)}</p> 
           <p className='container-content'>
             <ReadMore>
-            {convertNewLinesToBreaks(blog.content)}
+            <Markdown>{blog.content}</Markdown> 
             </ReadMore>
           </p>
           {blog.img && <img className={blog.img ? '' : 'hidden-img'} src={blog.img} alt='/' />}
