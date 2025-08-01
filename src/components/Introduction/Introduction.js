@@ -7,7 +7,7 @@ import Pool from '../../img/pool.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import html from '../../img/html.svg';
-import ps from '../../img/ps.svg';
+import react from '../../img/react.svg';
 import js from '../../img/js.svg';
 import figma from '../../img/figma.svg';
 import cooker from '../../img/cooker.svg';
@@ -113,21 +113,21 @@ function Introduction() {
             <div className='myskill-col'>
               <div className='myskill-row'>
                 <img src={js} alt="Javascript" className='svgicon' />
-                <SkillProgress skill="Javascript" years="2 YEARS" progress={70} />
+                <SkillProgress skill="Javascript" years="SINCE 2023" progress={70} />
               </div>
               <div className='myskill-row'>
                 <img src={html} alt="HTML/CSS" className='svgicon' />
-                <SkillProgress skill="HTML/CSS" years="2 YEARS" progress={90} />
+                <SkillProgress skill="HTML/CSS" years="SINCE 2023" progress={70} />
               </div>
             </div>
             <div className='myskill-col'>
               <div className='myskill-row'>
-                <img src={ps} alt="Photoshop" className='svgicon' />
-                <SkillProgress skill="Photoshop" years="1 MONTH" progress={30} />
+                <img src={react} alt="ReactJS" className='svgicon' />
+                <SkillProgress skill="ReactJS" years="SINCE 2024" progress={50} />
               </div>
               <div className='myskill-row'>
                 <img src={figma} alt="Figma" className='svgicon' />
-                <SkillProgress skill="Figma" years="3 MONTH" progress={60} />
+                <SkillProgress skill="Figma" years="SINCE 2024" progress={50} />
               </div>
             </div>
           </div>

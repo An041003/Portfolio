@@ -7,7 +7,7 @@ const SkillProgress = ({ skill, years, progress }) => {
         <div className="skill-text">
           <p>{skill}</p>
           <p>{years}</p>
-          <p className="progress-value">{progress}%</p>
+          <p className="progress-value">{progress}/100</p>
         </div>
       <div className="progress-bar">
         <div className="progress-fill" style={{ width: `${progress}%` }} />
